@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  # 1. Метакаталог Iceberg (хранит схемы таблиц)
+  # 1. Метакаталог Iceberg
   postgres:
     image: postgres:15-alpine
     container_name: lakehouse-postgres
@@ -19,7 +19,7 @@ services:
       timeout: 5s
       retries: 5
 
-  # 2. S3-хранилище (хранит сами файлы данных Parquet)
+  # 2. S3-хранилище
   minio:
     image: minio/minio:RELEASE.2024-01-16T16-07-38Z
     container_name: lakehouse-minio
@@ -38,7 +38,7 @@ services:
       timeout: 5s
       retries: 5
 
-  # 3. SQL-движок Trino (подключается напрямую к Postgres и MinIO)
+  # 3. Trino
   trino:
     image: trinodb/trino:435
     container_name: lakehouse-trino
